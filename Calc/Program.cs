@@ -14,12 +14,12 @@ namespace Calc
 			Console.Write("Введите первый элемент: ");
 			ArrayCalc[0] = Console.ReadLine(); //В первый объекст массива сохранил первый элемент
 			Console.WriteLine("Выберите оператор: Q = '+', W = '-', E = '/', R = '*'");
-			ConsoleKeyInfo key = Console.ReadKey(true);
+			ConsoleKeyInfo key = Console.ReadKey(true);	//ConsoleKeyInfo - Для описания нажатой клавиши, ReadKey - получает нажатую клавишу
 
 			string operation = "";	//Создал с помощью свитчей возможность пользователю выбирать операции
 			switch (key.Key)
 			{
-			case ConsoleKey.Q:
+			case ConsoleKey.Q:	//ConsoleKey - для определения клавиши
 				Console.WriteLine("+");
 				operation = "+";
 				break;
@@ -27,15 +27,15 @@ namespace Calc
 				Console.WriteLine("-");
 				operation = "-";
 				break;
-			case ConsoleKey.E:
+			case ConsoleKey.E:  //ConsoleKey - для определения клавиши
 				Console.WriteLine("/");
 				operation = "/";
 				break;
-			case ConsoleKey.R:
+			case ConsoleKey.R:  //ConsoleKey - для определения клавиши
 				Console.WriteLine("*");
 				operation = "*";
 				break;
-			case ConsoleKey.Escape:
+			case ConsoleKey.Escape: //ConsoleKey - для определения клавиши
 				return;
 			default:
 				Console.WriteLine("Неверный оператор.");
