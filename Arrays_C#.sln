@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays_C#", "Arrays_C#\Arra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calc", "Calc\Calc.csproj", "{9E4829D8-6CA9-4610-9F38-FB603F84F7C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewCalc", "NewCalc\NewCalc.csproj", "{39762A69-53E1-4E2E-BD3E-5983AE55A5DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9E4829D8-6CA9-4610-9F38-FB603F84F7C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E4829D8-6CA9-4610-9F38-FB603F84F7C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E4829D8-6CA9-4610-9F38-FB603F84F7C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39762A69-53E1-4E2E-BD3E-5983AE55A5DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39762A69-53E1-4E2E-BD3E-5983AE55A5DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39762A69-53E1-4E2E-BD3E-5983AE55A5DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39762A69-53E1-4E2E-BD3E-5983AE55A5DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

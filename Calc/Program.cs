@@ -15,7 +15,6 @@ namespace Calc
 			ArrayCalc[0] = Console.ReadLine(); //В первый объекст массива сохранил первый элемент
 			Console.WriteLine("Выберите оператор: Q = '+', W = '-', E = '/', R = '*'");
 			ConsoleKeyInfo key = Console.ReadKey(true);	//ConsoleKeyInfo - Для описания нажатой клавиши, ReadKey - получает нажатую клавишу
-
 			string operation = "";	//Создал с помощью свитчей возможность пользователю выбирать операции
 			switch (key.Key)
 			{
@@ -23,7 +22,7 @@ namespace Calc
 				Console.WriteLine("+");
 				operation = "+";
 				break;
-			case ConsoleKey.W:
+			case ConsoleKey.W:  //ConsoleKey - для определения клавиши
 				Console.WriteLine("-");
 				operation = "-";
 				break;
@@ -41,13 +40,11 @@ namespace Calc
 				Console.WriteLine("Неверный оператор.");
 				return;
 			}
-			ArrayCalc[1] = operation;	//Во второй объект массива сохранил оператор
-
+			ArrayCalc[1] = operation;   //Во второй объект массива сохранил оператор
 			Console.Write("Введите второй элемент: ");
-			ArrayCalc[2] = Console.ReadLine();	//В третий объект массива сохранил второй элемент
-
-			double result = CalculateArray(ArrayCalc);	//вызвал результирующую функцию, в которой производил вычисления
-			Console.WriteLine($"Результат: {ArrayCalc[0]} {ArrayCalc[1]} {ArrayCalc[2]} = {result}");	//Вывел строку с результатами на консоль
+			ArrayCalc[2] = Console.ReadLine();  //В третий объект массива сохранил второй элемент
+			double result = CalculateArray(ArrayCalc);  //вызвал результирующую функцию, в которой производил вычисления
+			Console.WriteLine($"Результат: {ArrayCalc[0]} {ArrayCalc[1]} {ArrayCalc[2]} = {result}");   //Вывел строку с результатами на консоль
 		}
 		static double CalculateArray(string[] ArrayCalc)	
 		{
