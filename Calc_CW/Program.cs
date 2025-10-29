@@ -13,8 +13,8 @@ namespace Calc_CW
 		static void Main(string[] args)
 		{
 			Console.Write("Введите арифметическое выражение: ");
-			string expression = "22*33/44/2*8*3";
-			//string expression = "22+33-44/2+8*3";
+			//string expression = "22*33/44/2*8*3";
+			string expression = "22+33-44/2+8*3";
 			//string expression = Console.ReadLine();
 			expression = expression.Replace(".", ",");
 			expression = expression.Replace(" ", "");
@@ -48,19 +48,31 @@ namespace Calc_CW
 
 			while (operations[0] != "")
 			{
-				int i = 0;
-				for (; i < operations.Length; i++)
+				for (int i = 0; i < operations.Length; i++)
 				{
 					if (operations[i] == "*" || operations[i] == "/")
 					{
 						if (operations[i] == "*")values[i] *= values[i + 1];
 						if (operations[i] == "/") values[i] /= values[i + 1];
+						for (int index = i; index < operations.Length - 1; index++) operations[index] = operations[index + 1];
+						for (int index = i + 1; index < values.Length - 1; index++) values[index] = values[index + 1];
+						operations[operations.Length - 1] = "";
+						values[values.Length - 1] = 0;
 					}
+					if (operations[i] == "*" || operations[i] == "/") i--;
+				}
+				for (int i = 0; i < operations.Length; i++)
+				{
+					if (operations[i] == "+" || operations[i] == "-")
+					{
+						if (operations[i] == "+") values[i] += values[i + 1];
+						if (operations[i] == "-") values[i] -= values[i + 1];
 					for (int index = i; index < operations.Length - 1; index++) operations[index] = operations[index + 1];
 					for (int index = i + 1; index < values.Length - 1; index++) values[index] = values[index + 1];
 					operations[operations.Length - 1] = "";
 					values[values.Length - 1] = 0;
-					if (operations[i] == "*" || operations[i] == "/") i--;
+					}
+					if (operations[i] == "+" || operations[i] == "-") i--;
 				}
 			}
 			Console.WriteLine(values[0]);
