@@ -10,11 +10,13 @@ namespace Calc_CW
 {
 	internal class Program
 	{
+		//15+30*8-150+1020
+		//15+30*8-150+1020/2+150
 		static void Main(string[] args)
 		{
 			Console.Write("Введите арифметическое выражение: ");
-			string expression = "22+33-44/2+8*3";
-			//string expression = Console.ReadLine();
+			//string expression = "22+33-44/2+8*3";
+			string expression = Console.ReadLine();
 			expression = expression.Replace(".", ",");
 			expression = expression.Replace(" ", "");
 			Console.WriteLine(expression);
@@ -44,7 +46,8 @@ namespace Calc_CW
 			}
 			Console.WriteLine();
 
-
+			double result = Hard_Operation(values, operations);
+			Console.WriteLine($"Результат: {result}");
 #if CALC_IF
 			if (expression.Contains("+"))
 				Console.WriteLine($"{values[0]} + {values[1]} = {values[0] + values[1]}");
@@ -68,6 +71,42 @@ namespace Calc_CW
 #endif
 
 			
+		}
+		static double Hard_Operation(double[] values, string[] operations)
+		{
+			double result = values[0];
+
+			for (int i = 0; i < operations.Length; i++)
+			{
+				if (i < operations.Length - 1 && (operations[i + 1] == "*" || operations[i + 1] == "/"))	//Обрабатываем деления и умножения в первую очередь
+				{
+					double temp = values[i + 1];	//Сохраняем значения во временную переменную
+					int j = i + 1;
+					while (j < operations.Length && (operations[j] == "*" || operations[j] == "/"))
+					{
+						if (operations[j] == "*")   //Проходимся по операциям до тех пор, пока они не кончатся
+							temp *= values[j + 1];
+						else if (operations[j] == "/")
+							temp /= values[j + 1];
+						j++;
+					}
+					// Прошёл приоритетные операции в виде умножений и делений, теперь к результирующей переменной прибавляю или вычитаю их, в зависимости от знака
+					if (operations[i] == "+")	
+						result += temp;
+					else if (operations[i] == "-")
+						result -= temp;
+
+					i = j - 1;	//Пропускаю пройденные операции
+				}
+				else //Провожу оставшиеся
+				{
+					if (operations[i] == "+")
+						result += values[i + 1];
+					else if (operations[i] == "-")
+						result -= values[i + 1];
+				}
+			}
+			return result;
 		}
 	}
 }
