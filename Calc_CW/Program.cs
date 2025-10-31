@@ -21,7 +21,7 @@ namespace Calc_CW
 
 			Console.Write("Введите арифметическое выражение: ");
 			//string expression = "22*33/44/2*8*3";
-			string expression = "22+33-44/2+8*3+100*2";
+			string expression = "22+33-44/2+8*3+100*2+20";
 			//string expression = Console.ReadLine();
 			expression = expression.Replace(".", ",");
 			expression = expression.Replace(" ", "");
@@ -100,7 +100,7 @@ namespace Calc_CW
 			//		if (operations[i] == "+" || operations[i] == "-") i--;
 			//	}
 			//}
-			////Console.WriteLine(values[0]);
+			//Console.WriteLine(values[0]);
 			//return values[0];
 			while (operations[0] != "")
 			{
@@ -109,12 +109,14 @@ namespace Calc_CW
 					if (operations[i] == "*" || operations[i] == "/")
 					{
 						values[i] = operations[i] == "*" ? values[i] * values[i + 1] : values[i] / values[i + 1];
-						Shift(i); i--;
+						Shift(i);
+						i--;
 					}
 					if (operations[i] == "+" || operations[i] == "-")
 					{
 						values[i] = operations[i] == "+" ? values[i] + values[i + 1] : values[i] - values[i + 1];
-						Shift(i); 
+						Shift(i);
+						//i--;
 					}
 				}
 			}
