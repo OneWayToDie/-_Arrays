@@ -21,7 +21,7 @@ namespace Calc_CW
 
 			Console.Write("Введите арифметическое выражение: ");
 			//string expression = "22*33/44/2*8*3";
-			string expression = "22+33-44/2+8*3";
+			string expression = "22+33-44/2+8*3+100*2";
 			//string expression = Console.ReadLine();
 			expression = expression.Replace(".", ",");
 			expression = expression.Replace(" ", "");
@@ -41,40 +41,16 @@ namespace Calc_CW
 			//	Console.Write($"{digits[i]}\t");
 			//}
 			//Console.WriteLine();
-
 			operations = expression.Split(digits);
 			operations = operations.Where(o => o != "").ToArray();  //Where(o => o != "") - запомнить(LINQ)
-			for (int i = 0; i < operations.Length; i++)
-			{
-				Console.Write($"{operations[i]}\t");
-			}
-			Console.WriteLine();
+			Console.WriteLine(Calculate(expression));
+			//for (int i = 0; i < operations.Length; i++)
+			//{
+			//	Console.Write($"{operations[i]}\t");
+			//}
+			//Console.WriteLine();
 
-
-			while (operations[0] != "")
-			{
-				for (int i = 0; i < operations.Length; i++)
-				{
-					if (operations[i] == "*" || operations[i] == "/")
-					{
-						if (operations[i] == "*")values[i] *= values[i + 1];
-						if (operations[i] == "/") values[i] /= values[i + 1];
-						Shift(i);
-					}
-					if (operations[i] == "*" || operations[i] == "/") i--;
-				}
-				for (int i = 0; i < operations.Length; i++)
-				{
-					if (operations[i] == "+" || operations[i] == "-")
-					{
-						if (operations[i] == "+") values[i] += values[i + 1];
-						if (operations[i] == "-") values[i] -= values[i + 1];
-						Shift(i);
-					}
-					if (operations[i] == "+" || operations[i] == "-") i--;
-				}
-			}
-			Console.WriteLine(values[0]);
+		
 #if CALC_IF
 			if (expression.Contains("+"))
 				Console.WriteLine($"{values[0]} + {values[1]} = {values[0] + values[1]}");
@@ -98,6 +74,51 @@ namespace Calc_CW
 #endif
 
 			
+		}
+		static double Calculate(string expression)
+		{
+			//while (operations[0] != "")
+			//{
+			//	for (int i = 0; i < operations.Length; i++)
+			//	{
+			//		if (operations[i] == "*" || operations[i] == "/")
+			//		{
+			//			if (operations[i] == "*") values[i] *= values[i + 1];
+			//			if (operations[i] == "/") values[i] /= values[i + 1];
+			//			Shift(i);
+			//		}
+			//		if (operations[i] == "*" || operations[i] == "/") i--;
+			//	}
+			//	for (int i = 0; i < operations.Length; i++)
+			//	{
+			//		if (operations[i] == "+" || operations[i] == "-")
+			//		{
+			//			if (operations[i] == "+") values[i] += values[i + 1];
+			//			if (operations[i] == "-") values[i] -= values[i + 1];
+			//			Shift(i);
+			//		}
+			//		if (operations[i] == "+" || operations[i] == "-") i--;
+			//	}
+			//}
+			////Console.WriteLine(values[0]);
+			//return values[0];
+			while (operations[0] != "")
+			{
+				for (int i = 0; i < operations.Length; i++)
+				{
+					if (operations[i] == "*" || operations[i] == "/")
+					{
+						values[i] = operations[i] == "*" ? values[i] * values[i + 1] : values[i] / values[i + 1];
+						Shift(i); i--;
+					}
+					if (operations[i] == "+" || operations[i] == "-")
+					{
+						values[i] = operations[i] == "+" ? values[i] + values[i + 1] : values[i] - values[i + 1];
+						Shift(i); 
+					}
+				}
+			}
+			return values[0];
 		}
 		static void Shift(int index)
 		{
